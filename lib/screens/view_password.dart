@@ -1,3 +1,4 @@
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:provider/provider.dart';
 import '../providers/passwords.dart';
 
@@ -15,10 +16,48 @@ class ViewScreen extends StatelessWidget {
         title: Text(password.title),
       ),
       body: Center(
-        child: Chip(
-          label: Text('Password: ${password.password}'),
+          child: Container(
+            padding: EdgeInsets.all(10),
+        child: Card(
+          color: Colors.white,
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  leading: Icon(FontAwesome5.pen),
+                  title: Text('Title'),
+                  subtitle: Text(password.title),
+                ),
+                Divider(),
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Icon(FontAwesome5.at),
+                  title: Text('Email/Username'),
+                  subtitle: Text(password.email_username),
+                ),
+                Divider(),
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: Icon(FontAwesome5.key),
+                  title: Text('Password'),
+                  subtitle: Text(password.password),
+                ),
+                Divider(),
+                SizedBox(height: 10,),
+                ListTile(
+                  leading: iconsMapNormal[password.icon],
+                  title: Text('Password Type'),
+                  subtitle: Text(password.passwordType),
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+      )),
     );
   }
 }

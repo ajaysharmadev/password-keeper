@@ -39,6 +39,7 @@ dependencies:
   uuid: ^3.0.4
   provider: ^5.0.0
   fluttericon: ^2.0.0
+  flutter_dialogs: ^1.1.0
   # images_picker: ^newest
 
 

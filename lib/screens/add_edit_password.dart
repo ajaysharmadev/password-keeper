@@ -188,8 +188,8 @@ class AddEditScreen extends StatelessWidget {
                         }
                       },
                       child: !isEditScreen
-                          ? const Text('Add Product')
-                          : const Text('Update Product'),
+                          ? const Text('Add Password')
+                          : const Text('Update Password'),
                     ),
                     SizedBox(
                       height: deviceHeight * 0.02,

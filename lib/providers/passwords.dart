@@ -16,6 +16,17 @@ Map<String, Icon> iconsMap = {
   'apple': const Icon(FontAwesome5.apple, size: 70),
   'others': const Icon(FontAwesome5.user, size: 70)
 };
+Map<String, Icon> iconsMapNormal = {
+  'facebook': const Icon(FontAwesome5.facebook,),
+  'twitter': const Icon(FontAwesome5.twitter,),
+  'reddit': const Icon(FontAwesome5.reddit,),
+  'google': const Icon(FontAwesome5.google,),
+  'github': const Icon(FontAwesome5.github,),
+  'microsoft': const Icon(FontAwesome5.microsoft,),
+  'yahoo': const Icon(FontAwesome5.yahoo,),
+  'apple': const Icon(FontAwesome5.apple,),
+  'others': const Icon(FontAwesome5.user, )
+};
 
 class Passwords with ChangeNotifier {
   List<Password> _passwords = [
@@ -64,7 +75,6 @@ class Passwords with ChangeNotifier {
         icon: password.icon,
         id: password.id);
     _passwords.add(newPassword);
-    notifyListeners();
   }
 
   Password findById(String id) {
@@ -76,7 +86,6 @@ class Passwords with ChangeNotifier {
         _passwords.indexWhere((password) => password.id == id);
     if (passwordIndex >= 0) {
       _passwords[passwordIndex] = newPassword;
-      notifyListeners();
     } else {
       print('Password not Found');
     }
