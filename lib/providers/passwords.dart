@@ -17,15 +17,35 @@ Map<String, Icon> iconsMap = {
   'others': const Icon(FontAwesome5.user, size: 70)
 };
 Map<String, Icon> iconsMapNormal = {
-  'facebook': const Icon(FontAwesome5.facebook,),
-  'twitter': const Icon(FontAwesome5.twitter,),
-  'reddit': const Icon(FontAwesome5.reddit,),
-  'google': const Icon(FontAwesome5.google,),
-  'github': const Icon(FontAwesome5.github,),
-  'microsoft': const Icon(FontAwesome5.microsoft,),
-  'yahoo': const Icon(FontAwesome5.yahoo,),
-  'apple': const Icon(FontAwesome5.apple,),
-  'others': const Icon(FontAwesome5.user, )
+  'facebook': const Icon(
+    FontAwesome5.facebook,
+  ),
+  'twitter': const Icon(
+    FontAwesome5.twitter,
+  ),
+  'reddit': const Icon(
+    FontAwesome5.reddit,
+  ),
+  'google': const Icon(
+    FontAwesome5.google,
+  ),
+  'github': const Icon(
+    FontAwesome5.github,
+  ),
+  'microsoft': const Icon(
+    FontAwesome5.microsoft,
+  ),
+  'yahoo': const Icon(
+    FontAwesome5.yahoo,
+  ),
+  'apple': const Icon(
+    FontAwesome5.apple,
+  ),
+  
+
+  'others': const Icon(
+    FontAwesome5.user,
+  )
 };
 
 class Passwords with ChangeNotifier {
@@ -75,10 +95,11 @@ class Passwords with ChangeNotifier {
         icon: password.icon,
         id: password.id);
     _passwords.add(newPassword);
+    notifyListeners();
   }
 
   Password findById(String id) {
-    return _passwords.firstWhere((password) => password.id == id);
+    return _passwords.firstWhere((password) => password.id == id, orElse: () => Password(title: 'Loading...', email_username: 'Loading...', password: 'Loading...', passwordType: 'Loading...', id: 'Loading...'));
   }
 
   void updatePassword(String id, Password newPassword) {
@@ -86,8 +107,10 @@ class Passwords with ChangeNotifier {
         _passwords.indexWhere((password) => password.id == id);
     if (passwordIndex >= 0) {
       _passwords[passwordIndex] = newPassword;
+      notifyListeners();
     } else {
       print('Password not Found');
     }
+    // notifyListeners();
   }
 }

@@ -4,6 +4,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:provider/provider.dart';
 import '../providers/passwords.dart';
 import 'package:uuid/uuid.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 var uuid = const Uuid();
 
@@ -181,8 +182,18 @@ class AddEditScreen extends StatelessWidget {
                               ? passwordsData.addPassword(password)
                               : passwordsData.updatePassword(
                                   passwordId, password);
-
-                          Navigator.of(context).pop();
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.SUCCES,
+                            animType: AnimType.BOTTOMSLIDE,
+                            title: 'Succes',
+                            desc: isEditScreen
+                                ? 'Your password has been updated.'
+                                : 'New password has been added.',
+                            btnOkOnPress: () {
+                              Navigator.of(context).pop();
+                            },
+                          )..show();
                         } else {
                           form.markAllAsTouched();
                         }
@@ -207,6 +218,32 @@ class AddEditScreen extends StatelessWidget {
                       }, removeFocus: true),
                       child: const Text('Reset all'),
                     ),
+                    if (isEditScreen)
+                      SizedBox(
+                        height: deviceHeight * 0.02,
+                      ),
+                    if (isEditScreen)
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
+                            minimumSize:
+                                Size(double.infinity, deviceHeight * 0.06)),
+                        onPressed: () {
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.ERROR,
+                            animType: AnimType.BOTTOMSLIDE,
+                            title: 'Are You Sure?',
+                            desc: 'This action can not be reversed.',
+                            btnCancelOnPress: () {},
+                            btnOkOnPress: () {
+                              passwordsData.deletePassword(passwordId);
+                              Navigator.of(context).pop();
+                            },
+                          )..show();
+                        },
+                        child: const Text('Delete'),
+                      ),
                   ],
                 );
               },
