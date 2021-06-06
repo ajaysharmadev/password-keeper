@@ -34,13 +34,13 @@ dependencies:
   cloud_firestore: ^2.2.1
   firebase_core: ^1.2.1
   firebase_auth: ^1.3.0
-  firebase_analytics: ^5.0.2
+  # firebase_analytics: ^5.0.2
   image_picker: ^0.8.0+1
   uuid: ^3.0.4
   provider: ^5.0.0
   fluttericon: ^2.0.0
   awesome_dialog: ^2.1.0
-  # images_picker: ^newest
+  firebase_storage: ^8.1.1
 
 
 

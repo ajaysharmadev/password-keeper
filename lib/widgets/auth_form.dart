@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:password_keeper/widgets/user_image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -11,6 +13,7 @@ class AuthForm extends StatefulWidget {
     String password,
     bool isLoginForm,
     BuildContext ctx,
+    File? image
   ) sumbitFn;
 
   @override
@@ -18,6 +21,13 @@ class AuthForm extends StatefulWidget {
 }
 
 class _AuthFormState extends State<AuthForm> {
+  //ImagePickingUploading
+  File? _userImageFile;
+  void _pickedImage(File image) {
+    _userImageFile = image;
+  }
+
+  //AuthForm Builder
   FormGroup buildForm() => fb.group(<String, Object>{
         'email': FormControl<String>(
           validators: [Validators.required, Validators.email],
@@ -35,7 +45,7 @@ class _AuthFormState extends State<AuthForm> {
         builder: (context, form, child) {
           return Column(
             children: <Widget>[
-              UserImagePicker(widget.isLoginForm),
+              UserImagePicker(widget.isLoginForm, _pickedImage),
               ReactiveTextField<String>(
                 formControlName: 'email',
                 validationMessages: (control) => {
@@ -78,9 +88,18 @@ class _AuthFormState extends State<AuthForm> {
                           MediaQuery.of(context).size.height * 0.06)),
                   onPressed: () {
                     if (form.valid) {
+                      if (_userImageFile == null && !widget.isLoginForm) {
+                        Scaffold.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Theme.of(context).errorColor,
+                            content: Text('Please pick an image.'),
+                          ),
+                        );
+                        return;
+                      }
                       Map signupData = form.value;
                       widget.sumbitFn(signupData['email'],
-                          signupData['password'], widget.isLoginForm, context);
+                          signupData['password'], widget.isLoginForm, context, _userImageFile);
                     } else {
                       form.markAllAsTouched();
                     }
