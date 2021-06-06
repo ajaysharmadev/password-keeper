@@ -35,13 +35,9 @@ class _AuthScreenState extends State<AuthScreen> {
           isLoginForm = !isLoginForm;
           _isLoading = false;
         });
-        
       }
     } catch (err) {
-      var message = 'An error occured, please check your credentials';
-      if (err != null) {
-        message = err.toString();
-      }
+      var message = err.toString();
       final snackBar = SnackBar(
         content: Text(message),
       );

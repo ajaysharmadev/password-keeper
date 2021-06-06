@@ -32,7 +32,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
         if(!widget.isLoginForm) CircleAvatar(
                 radius: 50,
                 child: _image == null
-            ? Text('No image selected.')
+            ? const Text('No image selected.')
             : Image.file(_image!),
                 // backgroundImage: NetworkImage('https://cdn.iconscout.com/icon/premium/png-256-thumb/profile-1506810-1278719.png'),//Image.asset('assests/icon/default_profile_icon.png'),
               ),
@@ -42,8 +42,8 @@ class _UserImagePickerState extends State<UserImagePicker> {
                   primary: Theme.of(context).primaryColor,
                 ), 
                 onPressed: getImage,
-                icon: Icon(Icons.image),
-                label: Text('Add Image'),
+                icon: const Icon(Icons.image),
+                label: const Text('Add Image'),
               ),
       ],
     );

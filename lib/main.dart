@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:password_keeper/providers/password.dart';
 import 'package:password_keeper/screens/add_edit_password.dart';
 import 'package:password_keeper/screens/view_password.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
         },
       ),
       routes: {
-        ViewScreen.routeName: (ctx) => ViewScreen(),
+        ViewScreen.routeName: (ctx) => const ViewScreen(),
         AddEditScreen.routeName: (ctx) => AddEditScreen(),
 
       },
