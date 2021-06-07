@@ -1,8 +1,11 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:provider/provider.dart';
-import '../providers/passwords.dart';
 
-import 'package:flutter/material.dart';
+import 'package:password_keeper/providers/passwords.dart';
+
+
 
 class ViewScreen extends StatelessWidget {
   const ViewScreen({Key? key}) : super(key: key);

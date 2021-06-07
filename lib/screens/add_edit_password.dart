@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:password_keeper/providers/password.dart';
+
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:provider/provider.dart';
-import '../providers/passwords.dart';
 import 'package:uuid/uuid.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:provider/provider.dart';
+
+import 'package:password_keeper/providers/password.dart';
+import 'package:password_keeper/providers/passwords.dart';
+
+
 
 var uuid = const Uuid();
 

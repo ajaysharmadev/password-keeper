@@ -1,10 +1,12 @@
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:password_keeper/widgets/auth_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:password_keeper/widgets/auth_form.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -26,7 +28,6 @@ class _AuthScreenState extends State<AuthScreen> {
         _isLoading = true;
       });
       if (isLoginForm) {
-        print('login steps executing');
         authResult = await _auth.signInWithEmailAndPassword(
             email: email, password: password);
         setState(() {

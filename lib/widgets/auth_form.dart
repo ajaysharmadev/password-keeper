@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:password_keeper/widgets/user_image_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+
+import 'package:password_keeper/widgets/user_image_picker.dart';
 
 class AuthForm extends StatefulWidget {
   const AuthForm(this.isLoading, this.sumbitFn, this.isLoginForm);

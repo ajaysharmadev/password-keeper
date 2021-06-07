@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
 import 'package:password_keeper/providers/passwords.dart';
 import 'package:password_keeper/screens/add_edit_password.dart';
 import 'package:password_keeper/screens/view_password.dart';
-import 'package:provider/provider.dart';
-import '../providers/password.dart';
+import 'package:password_keeper/providers/password.dart';
 
 class PasswordCard extends StatefulWidget {
   @override
@@ -50,7 +52,7 @@ class _PasswordCardState extends State<PasswordCard> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(5),
                             height: MediaQuery.of(context).size.height * 0.08,
                             child: ListTile(
                               shape: RoundedRectangleBorder(
@@ -60,7 +62,7 @@ class _PasswordCardState extends State<PasswordCard> {
                               title: Text(
                                 password.passwordType,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
                           ),
@@ -110,9 +112,9 @@ class _PasswordCardState extends State<PasswordCard> {
                       onPressed: () {
                         password.toggleFavoriteStatus();
                         final snackBar = SnackBar(
-                          duration: Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 500),
                           content: password.isFavorite
-                              ? Text('Added as favorite.')
+                              ? const Text('Added as favorite.')
                               : const Text('Removed from favorites.'),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
