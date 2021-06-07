@@ -119,37 +119,38 @@ class AddEditScreen extends StatelessWidget {
                     //PasswordType Field
                     ReactiveDropdownField<String>(
                       formControlName: 'passwordType',
-                      hint: Text('Select Password Type'),
+                      hint: const Text('Select Password Type'),
+                      // ignore: prefer_const_literals_to_create_immutables
                       items: [
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
                           child: Text('Others'),
                           value: 'others',
                         ),
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
                           child: Text('Facebook'),
                           value: 'Facebook',
                         ),
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
                           child: Text('Twitter'),
                           value: 'Twitter',
                         ),
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
                           child: Text('Reddit'),
                           value: 'Reddit',
                         ),
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
                           child: Text('Google'),
                           value: 'Google',
                         ),
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
                           child: Text('Github'),
                           value: 'Github',
                         ),
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
                           child: Text('Yahoo'),
                           value: 'Yahoo',
                         ),
-                        DropdownMenuItem(
+                        const DropdownMenuItem(
                           child: Text('Apple'),
                           value: 'Apple',
                         )

@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:password_keeper/screens/add_edit_password.dart';
 import 'package:password_keeper/screens/view_password.dart';
 import 'package:provider/provider.dart';
-
 import 'package:password_keeper/screens/auth_screen.dart';
 import 'package:password_keeper/screens/user_passwords_screen.dart';
-
 import 'providers/passwords.dart';
 
 void main() async {
@@ -17,7 +15,6 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Passwords()),
-        
       ],
       child: const MyApp(),
     ),
@@ -46,7 +43,6 @@ class MyApp extends StatelessWidget {
       routes: {
         ViewScreen.routeName: (ctx) => const ViewScreen(),
         AddEditScreen.routeName: (ctx) => AddEditScreen(),
-
       },
     );
   }

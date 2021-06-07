@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-///not working
 class UserImagePicker extends StatefulWidget {
   UserImagePicker(this.isLoginForm, this.imagePickFn);
   final void Function(File pickedImage) imagePickFn;
@@ -16,10 +15,11 @@ class _UserImagePickerState extends State<UserImagePicker> {
   final picker = ImagePicker();
 
   Future getImagefromCamera() async {
-    final pickedImage = await picker.getImage(source: ImageSource.gallery,
-    imageQuality: 50,
-    maxHeight: 512,
-    maxWidth: 512);
+    final pickedImage = await picker.getImage(
+        source: ImageSource.gallery,
+        imageQuality: 50,
+        maxHeight: 512,
+        maxWidth: 512);
 
     setState(() {
       if (pickedImage != null) {
@@ -27,7 +27,6 @@ class _UserImagePickerState extends State<UserImagePicker> {
       } else {
         print('No image selected.');
       }
-      
     });
     widget.imagePickFn(_image!);
   }
@@ -40,10 +39,9 @@ class _UserImagePickerState extends State<UserImagePicker> {
           CircleAvatar(
             radius: 50,
             child: _image == null
-                ? Center(child: const Text('No image selected.'))
+                ? const Center(child: Text('No image selected.'))
                 : null,
             backgroundImage: _image != null ? FileImage(_image!) : null,
-            // backgroundImage: NetworkImage('https://cdn.iconscout.com/icon/premium/png-256-thumb/profile-1506810-1278719.png'),//Image.asset('assests/icon/default_profile_icon.png'),
           ),
         if (!widget.isLoginForm)
           TextButton.icon(

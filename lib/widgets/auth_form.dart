@@ -8,13 +8,8 @@ class AuthForm extends StatefulWidget {
   const AuthForm(this.isLoading, this.sumbitFn, this.isLoginForm);
   final bool isLoading;
   final bool isLoginForm;
-  final void Function(
-    String email,
-    String password,
-    bool isLoginForm,
-    BuildContext ctx,
-    File? image
-  ) sumbitFn;
+  final void Function(String email, String password, bool isLoginForm,
+      BuildContext ctx, File? image) sumbitFn;
 
   @override
   _AuthFormState createState() => _AuthFormState();
@@ -92,14 +87,18 @@ class _AuthFormState extends State<AuthForm> {
                         Scaffold.of(context).showSnackBar(
                           SnackBar(
                             backgroundColor: Theme.of(context).errorColor,
-                            content: Text('Please pick an image.'),
+                            content: const Text('Please pick an image.'),
                           ),
                         );
                         return;
                       }
                       Map signupData = form.value;
-                      widget.sumbitFn(signupData['email'],
-                          signupData['password'], widget.isLoginForm, context, _userImageFile);
+                      widget.sumbitFn(
+                          signupData['email'],
+                          signupData['password'],
+                          widget.isLoginForm,
+                          context,
+                          _userImageFile);
                     } else {
                       form.markAllAsTouched();
                     }

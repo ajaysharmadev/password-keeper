@@ -1,8 +1,14 @@
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 import './password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+
+
 
 var uuid = const Uuid();
 Map<String, Icon> iconsMap = {
@@ -41,8 +47,6 @@ Map<String, Icon> iconsMapNormal = {
   'apple': const Icon(
     FontAwesome5.apple,
   ),
-  
-
   'others': const Icon(
     FontAwesome5.user,
   )
@@ -72,9 +76,17 @@ class Passwords with ChangeNotifier {
         passwordType: 'Apple',
         id: '3')
   ];
+  Passwords() {
+    _passwords = [];
+    loadData();
+  }
 
   List<Password> get items {
     return [..._passwords];
+  }
+
+  set setPasswordsList(List<Password> list) {
+    this._passwords = list;
   }
 
   List<Password> get favoriteItems {
@@ -83,6 +95,7 @@ class Passwords with ChangeNotifier {
 
   void deletePassword(String id) {
     _passwords.removeWhere((prod) => prod.id == id);
+    saveData();
     notifyListeners();
   }
 
@@ -95,22 +108,48 @@ class Passwords with ChangeNotifier {
         icon: password.icon,
         id: password.id);
     _passwords.add(newPassword);
+    saveData();
     notifyListeners();
   }
 
   Password findById(String id) {
-    return _passwords.firstWhere((password) => password.id == id, orElse: () => Password(title: 'Loading...', email_username: 'Loading...', password: 'Loading...', passwordType: 'Loading...', id: 'Loading...'));
+    return _passwords.firstWhere((password) => password.id == id,
+        orElse: () => Password(
+            title: 'Loading...',
+            email_username: 'Loading...',
+            password: 'Loading...',
+            passwordType: 'Loading...',
+            id: 'Loading...'));
   }
 
   void updatePassword(String id, Password newPassword) {
+
     final passwordIndex =
         _passwords.indexWhere((password) => password.id == id);
     if (passwordIndex >= 0) {
       _passwords[passwordIndex] = newPassword;
+      saveData();
       notifyListeners();
     } else {
       print('Password not Found');
     }
-    // notifyListeners();
+  }
+
+  void saveData() async {
+
+    List<String> spList =
+        _passwords.map((item) => jsonEncode(item.toMap())).toList();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('passwordList', spList);
+
+  }
+
+  void loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> spList = prefs.getStringList('passwordList') as List<String>;
+    _passwords =
+        spList.map((item) => Password.fromMap(json.decode(item))).toList();
+    notifyListeners();
+
   }
 }

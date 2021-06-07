@@ -20,9 +20,11 @@ class _PasswordCardState extends State<PasswordCard> {
       height: deviceHeight * 0.3,
       width: double.infinity,
       // color: Colors.black12,
-      margin: const EdgeInsets.symmetric(horizontal: 20,),
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+      ),
       child: SingleChildScrollView(
-              child: Card(
+        child: Card(
           elevation: 4,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
@@ -111,7 +113,7 @@ class _PasswordCardState extends State<PasswordCard> {
                           duration: Duration(milliseconds: 500),
                           content: password.isFavorite
                               ? Text('Added as favorite.')
-                              : Text('Removed from favorites.'),
+                              : const Text('Removed from favorites.'),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },

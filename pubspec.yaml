@@ -41,6 +41,7 @@ dependencies:
   fluttericon: ^2.0.0
   awesome_dialog: ^2.1.0
   firebase_storage: ^8.1.1
+  shared_preferences: ^2.0.6
 
 
 

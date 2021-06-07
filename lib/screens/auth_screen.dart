@@ -124,19 +124,12 @@ class _AuthScreenState extends State<AuthScreen> {
                     child: SingleChildScrollView(
                       child: AuthForm(_isLoading, _submitAuthForm, isLoginForm),
                     ),
-                  )
-                  // Container(6
-                  //   alignment: Alignment.centerRight,
-                  //   child: Text(
-                  //     "Value: $isLoginForm",
-                  //   ),
-                  // ),
+                  ),
                 ],
               ),
             ),
           ),
         ),
-        // color: Colors.blueAccent,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
